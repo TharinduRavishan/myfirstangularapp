@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { UserService } from './user.service';
 
 interface IFriend {
-  id: number;
   name: string;
   age: number;
   school: string;
@@ -18,24 +18,25 @@ export class AppComponent {
   school: string;
   friendList: Array<IFriend>;
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.friendList = [];
+    this.getUsers();
   }
 
   addFriend(): void {
     const friend = {
-      id: this.friendList.length,
       name: this.name,
       age: this.age,
       school: this.school,
     };
-    this.friendList.push(friend);
-    this.name = null;
-    this.age = null;
-    this.school = null;
+    this.userService.createUser(friend).subscribe((res: any) => {
+      this.getUsers();
+    });
   }
 
-  deleteFriend(id: number): void {
-    this.friendList.splice(id, 1);
+  getUsers(): void {
+    this.userService.getUsers().subscribe((res: any) => {
+      this.friendList = res.data;
+    });
   }
 }

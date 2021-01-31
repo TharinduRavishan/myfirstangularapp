@@ -1,7 +1,7 @@
 <div class="main-app">
-  <h1 class="title">My School Friends</h1>
+  <h1 class="title">My School Friends.</h1>
 
-  <h2 class="sub-title">Add Friend</h2>
+  <h2 class="sub-title">Add Friend.</h2>
   <div class="add-user-container">
     <input
       class="name"
@@ -9,7 +9,16 @@
       placeholder="Enter your friend name"
       [(ngModel)]="name"
     />
-    <input class="age" type="number" placeholder="Age" [(ngModel)]="age" />
+      <input class="age" 
+      type="number"
+      placeholder="Age" 
+      [(ngModel)]="age" 
+    />
+      <input class="school" 
+      type="text" 
+      placeholder="School" 
+      [(ngModel)]="school"
+    />
     <button class="save-button" type="button" (click)="addFriend()">
       SAVE
     </button>
@@ -18,11 +27,12 @@
   <br />
   <br />
 
-  <h2 class="sub-title">Friends List</h2>
+  <h2 class="list-title">Friends List.</h2>
   <div>
     <div class="friend-container" *ngFor="let friend of friendList">
       <span class="friend-name">{{ friend.name }}</span>
       <span class="friend-age">{{ friend.age }}</span>
+      <span class="friend-school">{{ friend.school }}</span>
       <button type="button" class="friend-delete" (click)="deleteFriend(friend.id)">
         DELETE
       </button>

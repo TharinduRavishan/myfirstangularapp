@@ -1,5 +1,5 @@
 .main-app {
-  background-color: #eaeaea;
+  background-color: #EAECA4;
   height: 100%;
   margin: 0;
   padding: 20px;
@@ -7,11 +7,18 @@
 
 .title {
   text-align: center;
-  color: #fb781a;
+  font-family: serif;
+  color: #ec5701;
 }
 
 .sub-title {
-  color: #e700f5;
+  color: #b167ee;
+  font-family: monospace;
+}
+
+.list-title {
+  color: #0080e9;
+  font-family: system-ui;
 }
 
 .add-user-container {
@@ -27,6 +34,14 @@
 }
 
 .age {
+  font-size: 16px;
+  margin-right: 10px;
+  padding: 8px 16px 8px 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+.school {
   font-size: 16px;
   margin-right: 10px;
   padding: 8px 16px 8px 16px;
@@ -65,11 +80,17 @@
   font-weight: bold;
 }
 
+.friend-school {
+  font-size: 16px;
+  color: tomato;
+  font-weight: bold;
+}
+
 .friend-delete {
   padding: 4px 8px;
   font-weight: bold;
   color: white;
-  background-color: tomato;
+  background-color: red;
   border: none;
   outline: none;
   cursor: pointer;

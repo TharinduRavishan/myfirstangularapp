@@ -7,17 +7,17 @@
       class="name"
       type="text"
       placeholder="Enter your friend name"
-      [(ngModel)]="name"
+      [(ngModel)]="friendname"
     />
       <input class="age" 
       type="number"
       placeholder="Age" 
-      [(ngModel)]="age" 
+      [(ngModel)]="friendage" 
     />
       <input class="school" 
       type="text" 
       placeholder="School" 
-      [(ngModel)]="school"
+      [(ngModel)]="friendschool"
     />
     <button class="save-button" type="button" (click)="addFriend()">
       SAVE
@@ -33,9 +33,46 @@
       <span class="friend-name">{{ friend.name }}</span>
       <span class="friend-age">{{ friend.age }}</span>
       <span class="friend-school">{{ friend.school }}</span>
-      <button type="button" class="friend-delete">
+      <button type="button" class="friend-delete" (click)="deleteFriend(friend._id)">
         DELETE
       </button>
     </div>
   </div>
 </div>
+
+<div class="main-app1">
+  <h1 class="title1">My School Friends Books.</h1>
+
+  <h2 class="sub-title1">Add Book.</h2>
+  <div class="add-user-container">
+    <input
+      class="name1"
+      type="text"
+      placeholder="Enter your book name"
+      [(ngModel)]="bookname"
+    />
+      <input class="price" 
+      type="number"
+      placeholder="price" 
+      [(ngModel)]="bookprice" 
+    />
+    <button class="save-button1" type="button" (click)="addBook()">
+      SAVE
+    </button>
+  </div>
+  <br />
+  <br />
+  <br />
+
+  <h2 class="list-title1">Book List.</h2>
+  <div>
+    <div class="book-container" *ngFor="let book of BookList">
+      <span class="book-name">{{ book.name }}</span>
+      <span class="book-price">{{ book.price }}</span>
+      <button type="button" class="book-delete" (click)="deleteBook(book._id)">
+        DELETE
+      </button>
+    </div>
+  </div>
+</div>
+

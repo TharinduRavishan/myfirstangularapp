@@ -21,4 +21,18 @@ export default {
       return res.status(500).send(error);
     }
   },
+
+    // Delete user by Id
+    async deleteBook(req, res) {
+      try {
+        const deletedBook = await Book.findByIdAndRemove(req.query.id);
+        if (deletedBook) {
+          return res.send({ message: SUCCESS });
+        } else {
+          return res.send({ message: FAILED });
+        }
+      } catch (error) {
+        return res.status(500).send(error);
+      }
+    },
 };

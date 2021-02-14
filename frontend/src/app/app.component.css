@@ -196,3 +196,15 @@
   cursor: pointer;
   border-radius: 5px;
 }
+
+.book-edit {
+  padding: 4px 8px;
+  font-weight: bold;
+  color: white;
+  background-color: #1b00ff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 12px;
+}

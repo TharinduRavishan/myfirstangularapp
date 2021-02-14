@@ -3,9 +3,10 @@ import { UserService } from './user.service';
 import { BookService } from './book.service';
 
 interface IFriend {
-  friendname: string;
-  friendage: number;
-  friendschool: string;
+  _id?: string;
+  name: string;
+  age: number;
+  school: string;
 }
 
 interface IBook {
@@ -27,10 +28,12 @@ export class AppComponent {
   friendList: Array<IFriend>;
   BookList: Array<IBook>;
 
+  currentFriendId: string;
 
   constructor(
     private userService: UserService,
-    private bookService: BookService, ){
+    private bookService: BookService
+  ) {
     this.friendList = [];
     this.getUsers();
     this.BookList = [];
@@ -38,27 +41,46 @@ export class AppComponent {
   }
 
   addFriend(): void {
-    const friend = {
+    const friend: IFriend = {
       name: this.friendname,
       age: this.friendage,
       school: this.friendschool,
     };
-    this.userService.createUser(friend).subscribe((res: any) => {
-      this.getUsers();
-    });    
+
+    if (!this.currentFriendId) {
+      this.userService.createUser(friend).subscribe((res: any) => {
+        this.getUsers();
+      });
+    } else {
+      friend._id = this.currentFriendId;
+      this.userService.updateUser(friend).subscribe((res: any) => {
+        this.currentFriendId = null;
+        this.getUsers();
+      });
+    }
   }
 
   deleteFriend(id: string): void {
     this.userService.deleteUser(id).subscribe((res: any) => {
       this.getUsers();
-    })
+    });
   }
 
-  addBook():void {
+  editFriend(id: string): void {
+    this.currentFriendId = id;
+    const currentFriend = this.friendList.find(
+      ({ _id }) => _id === this.currentFriendId
+    );
+    this.friendname = currentFriend.name;
+    this.friendschool = currentFriend.school;
+    this.friendage = currentFriend.age;
+  }
+
+  addBook(): void {
     const book = {
       name: this.bookname,
       price: this.bookprice,
-    }
+    };
     this.bookService.createBook(book).subscribe((res: any) => {
       this.getBooks();
     });
@@ -67,7 +89,7 @@ export class AppComponent {
   deleteBook(id: string): void {
     this.bookService.deleteBook(id).subscribe((res: any) => {
       this.getBooks();
-    })
+    });
   }
 
   getUsers(): void {

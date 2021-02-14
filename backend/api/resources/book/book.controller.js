@@ -35,4 +35,26 @@ export default {
         return res.status(500).send(error);
       }
     },
+
+      // Update book
+  async updateBook(req, res) {
+    try {
+      const book = {
+        name: req.body.name,
+        price: req.body.price,
+      };
+      const updatedBook = await Book.findOneAndUpdate(
+        { _id: req.body._id },
+        book,
+        { new: true }
+      );
+      if (updatedBook) {
+        return res.send({ message: SUCCESS, data: updatedBook });
+      } else {
+        return res.send({ message: FAILED });
+      }
+    } catch (error) {
+      return res.status(500).send(error);
+    }
+  },
 };

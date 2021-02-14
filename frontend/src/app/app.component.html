@@ -83,9 +83,21 @@
     <div class="book-container" *ngFor="let book of BookList">
       <span class="book-name">{{ book.name }}</span>
       <span class="book-price">{{ book.price }}</span>
-      <button type="button" class="book-delete" (click)="deleteBook(book._id)">
+      <div>
+        <button
+        type="button"
+        class="book-edit"
+        (click)="editBook(book._id)"
+      >
+        EDIT
+      </button>
+      <button 
+        type="button" 
+        class="book-delete" 
+        (click)="deleteBook(book._id)">
         DELETE
       </button>
+      </div>
     </div>
   </div>
 </div>

@@ -16,6 +16,10 @@ export class BookService {
   return this.http.post('http://localhost:3000/api/book', book);
   }
 
+  updateBook(book: any): Observable<any> {
+    return this.http.put('http://localhost:3000/api/book', book);
+  }
+
   deleteBook(id: string): Observable<any> {
     return this.http.delete(`http://localhost:3000/api/book?id=${id}`);
   }
